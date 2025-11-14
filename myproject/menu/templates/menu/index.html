@@ -1,0 +1,11 @@
+{% load menu_tags %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'menu/style.css' %}">
+<head>
+    <meta charset="UTF-8">
+    <title>Меню сайта</title>
+</head>
+<body>
+    <h1>Меню сайта</h1>
+    {% draw_menu 'Главное' %}
+</body>

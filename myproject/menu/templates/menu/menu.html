@@ -1,0 +1,56 @@
+<ul class="menu-root">
+    {% for node in menu_tree %}
+        <li class="{% if node.children %}has-children{% endif %} {% if node.is_open %}open{% endif %}">
+
+            {% if node.resolved_url %}
+                <a href="{{ node.resolved_url }}" class="{% if node.is_active %}active{% endif %}">
+                    {{ node.item.name }}
+                </a>
+            {% else %}
+                <span class="{% if node.is_active %}active{% endif %}">
+                    {{ node.item.name }}
+                </span>
+            {% endif %}
+
+            {% if node.children %}
+                <ul>
+                    {% for child in node.children %}
+                        <li class="{% if child.children %}has-children{% endif %} {% if child.is_open %}open{% endif %}">
+
+                            {% if child.resolved_url %}
+                                <a href="{{ child.resolved_url }}" class="{% if child.is_active %}active{% endif %}">
+                                    {{ child.item.name }}
+                                </a>
+                            {% else %}
+                                <span class="{% if child.is_active %}active{% endif %}">
+                                    {{ child.item.name }}
+                                </span>
+                            {% endif %}
+
+                            {% if child.children %}
+                                <ul>
+                                    {% for sub in child.children %}
+                                        <li class="{% if sub.children %}has-children{% endif %} {% if sub.is_open %}open{% endif %}">
+
+                                            {% if sub.resolved_url %}
+                                                <a href="{{ sub.resolved_url }}" class="{% if sub.is_active %}active{% endif %}">
+                                                    {{ sub.item.name }}
+                                                </a>
+                                            {% else %}
+                                                <span class="{% if sub.is_active %}active{% endif %}">
+                                                    {{ sub.item.name }}
+                                                </span>
+                                            {% endif %}
+
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
